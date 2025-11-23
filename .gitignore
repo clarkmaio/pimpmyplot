@@ -17,5 +17,6 @@ build/
 pimpmyplot.egg-info/
 .venv/
 venv/
+.pytest_cache
 
 deployinstructions.md
