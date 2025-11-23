@@ -14,8 +14,7 @@ __pycache__
 
 dist/
 build/
-pyslurp.egg-info/
-slurp.egg-info/
+pimpmyplot.egg-info/
 .venv/
 venv/
 

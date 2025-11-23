@@ -1,7 +1,7 @@
 
 
 
-__version__ = '0.0.1'
+from pimpmyplot._version import __version__
 
 from pimpmyplot.axis import *
 from pimpmyplot.legend import *
