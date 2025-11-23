@@ -7,7 +7,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name='pimpmyplot',
-    version=__version__,
+    version='0.0.3',
     author='andrea maioli',
     author_email='maioliandrea0@gmail.com',
     description='Small collection of functions to make better looking matplotlib plots',
