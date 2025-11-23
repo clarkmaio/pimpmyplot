@@ -3,11 +3,9 @@
 
 # Pimp My Plot
 
-
-<div style="text-align: center;">
-  <img src="assets/pimpmyplotlogo.png" width="30%">
-</div>
-
+<p align="center">
+  <img src="assets/pimpmyplotlogo.png" width="30%"/>
+</p>
 
 
 
@@ -45,10 +43,9 @@ pmp.remove_ticks()                  # remove ticks in a simpler way
 ```
 
 <br>
-<div style="text-align: center;">
-  <img src="assets/stdplot.png" width="40%">
-</div>
-
+<p align="center">
+  <img src="assets/stdplot.png" width="40%"/>
+</p>
 
 
 ## Demo
