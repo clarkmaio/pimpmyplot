@@ -1,6 +1,7 @@
-from setuptools import setup, find_packages
 
-from pimpmyplot._version import __version__
+
+
+from setuptools import setup, find_packages
 
 with open('README.md', 'r', encoding='utf-8') as f:
     long_description = f.read()
