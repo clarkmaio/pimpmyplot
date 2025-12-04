@@ -50,4 +50,4 @@ pmp.remove_ticks()                  # remove ticks in a simpler way
 
 ## Demo
 
-For a small interactive demo visit [this marimo notebook](https://molab.marimo.io/notebooks/nb_R7uUAUWZfgRioAqmzL9XJm) on molab.
+For a small interactive demo visit [this marimo notebook](https://molab.marimo.io/notebooks/nb_Mxpo94jXpEhTj32ayiEoJn) on molab.
