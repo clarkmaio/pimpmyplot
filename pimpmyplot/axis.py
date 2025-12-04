@@ -28,6 +28,7 @@ def remove_axis(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
         ax.spines[s].set_visible(False)
 
 
+@setupax
 def remove_ticks(*spines: str, ax: plt.axis = None) -> None:
 
     if not ax:
@@ -40,4 +41,9 @@ def remove_ticks(*spines: str, ax: plt.axis = None) -> None:
         **tickkwargs,
         **labelkwargs
     )
+
+
+
+
+
 
