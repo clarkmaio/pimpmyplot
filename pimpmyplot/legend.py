@@ -10,11 +10,13 @@ from typing import Tuple
 
 
 
-POSITION_SETUP = {
-    'upper': (),
-    'lower': ('upper center', (.5, -.1)),
-    'right': ('upper left', (1, 1.03)),
-    'left': ('upper right', ())
+EXT_LOC_MAP = {
+    'ext lower center': ('upper center', (.5, -0.1)),
+    'ext lower right': ('lower left', (1., 0.)),
+    'ext lower left': ('lower right', (-0.01, 0.)), 
+    'ext upper right': ('upper left', (1, 1.03)),
+    'ext upper left': ('upper right', (-0.01, 1.03)),
+    'ext upper center': ('lower center', (.5, 1.03)),
 }
 
 
@@ -22,17 +24,28 @@ POSITION_SETUP = {
 def legend(*args, 
            shadow: bool = True, 
            frameon: bool = True,
-           loc: str = 'upper center',
-           bbox_to_anchor: Tuple = (.5, -.1),
+           loc: str = 'ext lower center',
+           bbox_to_anchor: Tuple = None,
            edgecolor: str = 'k',
            ax: matplotlib.axes.Axes = None,
            ncol: int = None,
-           position: str = None,
            **kwargs) -> matplotlib.legend.Legend:
-    
-    if position:
-        loc = None
-        bbox_to_anchor = None
+    """
+    Just a wrap of standard legend with additional features and style.
+    Can handle external legend location
+
+    Params
+    -------
+    loc: str
+        legend location. One can locate the legend at the exterior of plot prefix "ext" (a.e. "ext upper center")
+    ncol: int
+        number of legend columns. Default is the number of labels to make legend flat. Set 1 for classical vertical legend
+
+    """
+
+    if loc.startswith('ext'):
+        # To display legend at the exterior you need a new loc and the associated bboc_to_anchor for offset
+        loc, bbox_to_anchor = EXT_LOC_MAP[loc]
 
 
     # Deduce number labels in legend
