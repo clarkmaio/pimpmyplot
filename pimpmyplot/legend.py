@@ -20,6 +20,13 @@ EXT_LOC_MAP = {
 }
 
 
+DEFAULT_OFFSET_ANNOTATION_LEGEND =  {
+    'left': (5, 0),
+    'center': (0, 5),
+    'right': (-5, 0)
+}
+
+
 @setupax
 def legend(*args, 
            shadow: bool = True, 
@@ -42,6 +49,8 @@ def legend(*args,
         number of legend columns. Default is the number of labels to make legend flat. Set 1 for classical vertical legend
 
     """
+
+    # TODO bbox_to_anchor dynamic depending on space occupied by ticks
 
     if loc.startswith('ext'):
         # To display legend at the exterior you need a new loc and the associated bboc_to_anchor for offset
@@ -73,12 +82,11 @@ def legend(*args,
 
 @setupax
 def annotation_legend(ax: matplotlib.axes.Axes = None, 
-                line_color: bool = False, 
-                offset: Tuple = (5, -2), 
+                offset: Tuple = None, 
                 fontweight: str = None, 
                 size: str = None,
                 ha: str = 'left', 
-                color: str = 'black'):
+                color: str = None):
     """
     Create a legend printing labels next to last value on the right.
     
@@ -86,18 +94,21 @@ def annotation_legend(ax: matplotlib.axes.Axes = None,
     -------
         ax: matplotlib.axes.Axes
             axis the legend willbe applied to
-        line_color: bool 
-            True to apply to labels same color of curves
         offset:
             Tuple to apply custom offset on labels
         color:
-            Make all labels with this color. Ignored if line_color is True
+            Make all labels with this color. If None use same color of associated plot
         
     """
 
+
+    if offset is None:
+        offset = DEFAULT_OFFSET_ANNOTATION_LEGEND[ha]
+
+
     for line in ax.get_lines():        
         x_coord, y_coord, label = extract_line_info(line=line)
-        c = line.get_color() if line_color else color
+        c = line.get_color() if color is None else color
 
         ax.annotate(
             text=label,

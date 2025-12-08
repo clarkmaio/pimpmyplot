@@ -29,7 +29,7 @@ def remove_axis(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
 
 
 @setupax
-def remove_ticks(*spines: str, ax: plt.axis = None) -> None:
+def remove_ticks(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
 
     if not ax:
         ax = plt.gca()
@@ -43,7 +43,31 @@ def remove_ticks(*spines: str, ax: plt.axis = None) -> None:
     )
 
 
+@setupax
+def display_ticks(n: int = None, every: int = None, values: List = None, ax: matplotlib.axes.Axes = None) -> None:
+    """
+    Handle axis ticks display. Control how many ticks or which ones to show
 
+    Params
+    -------
+    n: int
+        Absolute number of ticks to display
+    every: int
+        Disiplay subset of ticks among default ones adopting the frequency defined by this parameter
+    values: List
+        Use this values as ticks
+    """
+
+    assert n | every | values, "One between n, every and values parameters must be not None"
+    
+    if n:
+        pass
+
+    elif every:
+        pass
+
+    elif values:
+        pass
 
 
 
