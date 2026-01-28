@@ -39,16 +39,18 @@ plt.plot(x, np.sin(x), label='sin(x)')
 plt.plot(x, np.sin(2*x), label='sin(2x)')
 plt.plot(x, np.sin(3*x), label='sin(3x)')
 
-pmp.bullet_grid(stepinch=.3)        # dotted grid similar to a bullet journal
-pmp.remove_axis('top', 'right')     # remove axis in a simpler way
-pmp.remove_ticks()                  # remove ticks in a simpler way
-pmp.legend(loc='ext lower center', title='Legend title')                        # same as plt legend but better looking and horizontal labels as default
-plt.title('Plot title')              # remove ticks in a simpler way
+# ---------------- Make pimp happen ---------------
+pmp.bullet_grid(stepinch=.3)                                # dotted grid similar to a bullet journal
+pmp.remove_axis('top', 'right')                             # remove axis in a simpler way
+pmp.remove_ticks()                                          # remove ticks in a simpler way
+pmp.legend(loc='ext lower center', title='Legend title')    # same as plt legend but better looking \
+                                                              and horizontal labels as default
+plt.title('Plot title') 
 ```
 
 <br>
 <p align="center">
-  <img src="assets/demoreadme.png" width="40%"/>
+  <img src="assets/demoreadme.png" width="80%"/>
 </p>
 
 
