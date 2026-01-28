@@ -12,11 +12,16 @@ from typing import Tuple
 
 EXT_LOC_MAP = {
     'ext lower center': ('upper center', (.5, -0.1)),
-    'ext lower right': ('lower left', (1., 0.)),
-    'ext lower left': ('lower right', (-0.01, 0.)), 
-    'ext upper right': ('upper left', (1, 1.03)),
-    'ext upper left': ('upper right', (-0.01, 1.03)),
-    'ext upper center': ('lower center', (.5, 1.03)),
+    'ext lower right': ('upper right', (1., -0.1)),
+    'ext lower left': ('upper left', (-0.01, -0.1)),
+    'ext upper center': ('lower center', (.5, 1.03)), 
+    'ext upper right': ('lower right', (1, 1.03)),
+    'ext upper left': ('lower left', (-0.01, 1.03)),
+
+    'ext side lower left': ('lower right', (None, -0.02)),
+    'ext side upper left': ('upper right', (None, 1.02)),
+    'ext side lower right': ('lower left', (1., -0.02)),
+    'ext side upper right': ('upper left', (1., 1.02))
 }
 
 
@@ -25,6 +30,65 @@ DEFAULT_OFFSET_ANNOTATION_LEGEND =  {
     'center': (0, 5),
     'right': (-5, 0)
 }
+
+
+def extract_line_info(line):
+    x_coord = line.get_xdata()[-1]
+    y_coord = line.get_ydata()[-1]
+    label = line.get_label() 
+    return x_coord, y_coord, label
+
+
+def get_number_labels(ax) -> int:
+    _, labels = ax.get_legend_handles_labels()
+    return len(labels)
+
+
+def infer_ncol(ncol: int, ax, loc: str):
+    if ncol == -1:
+        ncol = get_number_labels(ax=ax)
+    elif ncol is None:
+        ncol = 1
+        if not loc.startswith('ext side'):
+            ncol = get_number_labels(ax=ax)
+    return ncol
+
+
+def get_tick_labels_shape(ax) -> Tuple:
+    """
+    Return max width of x and y ticks labels
+    """
+    x_width = max(*[l.get_window_extent().width for l in ax.get_xticklabels()])
+    x_height = max(*[l.get_window_extent().height for l in ax.get_xticklabels()])
+
+    y_width = max(*[l.get_window_extent().width for l in ax.get_yticklabels()])
+    y_height = max(*[l.get_window_extent().height for l in ax.get_yticklabels()])
+
+    return (x_width, x_height), (y_width, y_height)
+    
+
+
+def _build_ext_bbox_to_anchor(loc: str, ax) -> Tuple:
+    '''
+    In case of ext location return the loc and bbox to use to place legend
+    '''
+
+    _cases_dynamic_mapping = (loc.endswith('left') and loc.startswith('ext side'))
+    loc, bbox_to_anchor = EXT_LOC_MAP[loc]
+    if not _cases_dynamic_mapping:
+        return loc, bbox_to_anchor
+
+    # TODO Make MARGIN dynamic. Percentage of (max_width_labels) / (ax_width)?
+    MARGIN = 0.05
+    y_labels = ax.get_yticklabels()
+    max_width_labels = max(*[l.get_window_extent().width for l in y_labels])
+    ax_width = ax.get_position().transformed(plt.gca().transAxes.get_affine()).width
+    L = (max_width_labels) / (ax_width) + MARGIN
+    bbox_to_anchor = (-L, bbox_to_anchor[1])
+
+    return loc, bbox_to_anchor
+
+
 
 
 @setupax
@@ -50,19 +114,12 @@ def legend(*args,
 
     """
 
-    # TODO bbox_to_anchor dynamic depending on space occupied by ticks
-
+    original_loc = loc
     if loc.startswith('ext'):
-        # To display legend at the exterior you need a new loc and the associated bboc_to_anchor for offset
-        loc, bbox_to_anchor = EXT_LOC_MAP[loc]
+        loc, bbox_to_anchor = _build_ext_bbox_to_anchor(loc=loc, ax=ax)
 
+    ncol = infer_ncol(ncol=ncol, ax=ax, loc=original_loc)
 
-    # Deduce number labels in legend
-    if ncol is None:
-        handles, labels = ax.get_legend_handles_labels()
-        ncol = len(labels)
-
-    # Call standard legend
     l = ax.legend(*args, 
                   shadow=shadow, 
                   frameon=frameon, 
@@ -122,8 +179,3 @@ def annotation_legend(ax: matplotlib.axes.Axes = None,
         )
 
 
-def extract_line_info(line):
-    x_coord = line.get_xdata()[-1]
-    y_coord = line.get_ydata()[-1]
-    label = line.get_label() 
-    return x_coord, y_coord, label
