@@ -17,6 +17,9 @@ Builds a grid similar to a dotted bullet journal by scattering small points unif
 * ``stepinch`` *(float)*: Data-independent distance between dots, measured in inches. Default is ``0.5``.
 * ``scatter_kwargs`` *(dict)*: Additional keyword arguments passed to ``ax.scatter`` to customize the appearance of the dots (default: ``s=2``, ``color='#cccccc'``, ``alpha=0.8``).
 
+.. image:: _static/bullet_grid_plot.png
+   :align: center
+
 ``pimpmyplot.remove_axis``
 --------------------------
 
@@ -29,6 +32,9 @@ Quickly removes the specified spines (borders) from your plot.
 * ``*spines`` *(str)*: A sequence of spine names to remove. Valid options are ``'top'``, ``'bottom'``, ``'left'``, and ``'right'``. If no arguments are passed, it removes all spines.
 * ``ax``: The axis to modify.
 
+.. image:: _static/remove_axis_plot.png
+   :align: center
+
 ``pimpmyplot.remove_ticks``
 ---------------------------
 
@@ -40,6 +46,9 @@ Removes the ticks and their labels from the specified sides of the plot.
 
 * ``*spines`` *(str)*: A sequence of spine names to remove the ticks from. Same as ``remove_axis``.
 * ``ax``: The axis to modify.
+
+.. image:: _static/remove_ticks_plot.png
+   :align: center
 
 ``pimpmyplot.legend``
 ---------------------
@@ -58,6 +67,9 @@ A wrapper around the standard matplotlib legend but with better styling defaults
 * ``ncol`` *(int)*: Number of columns for the legend. By default, it dynamically infers the number of rows/columns depending on the location to flatten the legend horizontally.
 * ``ax``, ``shadow``, ``edgecolor``: Used to further style the legend exactly like standard matplotlib.
 
+.. image:: _static/legend_plot.png
+   :align: center
+
 ``pimpmyplot.annotation_legend``
 --------------------------------
 
@@ -70,3 +82,6 @@ An extremely clean alternative to the traditional legend. Instead of using a ded
 * ``offset`` *(tuple)*: Tuple specifying a custom offset in points for the labels.
 * ``ha`` *(str)*: Horizontal alignment of the text (e.g. ``'left'``).
 * ``color`` *(str)*: Forces all labels to use this color. If ``None``, each label automatically inherits the color of its corresponding line.
+
+.. image:: _static/annotation_legend_plot.png
+   :align: center
