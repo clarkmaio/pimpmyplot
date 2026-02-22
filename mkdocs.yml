@@ -1,0 +1,39 @@
+site_name: Pimp My Plot
+site_description: A lightweight Python package to boost Matplotlib visualizations
+repo_url: https://github.com/clarkmaio/pimpmyplot
+repo_name: clarkmaio/pimpmyplot
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - content.code.copy
+  palette:
+    - scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+nav:
+  - Home: index.md
+  - Quick Start: quickstart.md
+  - Core Features: features.md
+  - Installation: installation.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences

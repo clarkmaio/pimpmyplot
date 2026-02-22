@@ -6,7 +6,7 @@ import numpy as np
 import pimpmyplot as pmp
 
 def _save(name):
-    static_dir = os.path.join(os.path.dirname(__file__), '_static')
+    static_dir = os.path.join(os.path.dirname(__file__), 'assets')
     os.makedirs(static_dir, exist_ok=True)
     out_path = os.path.join(static_dir, f'{name}.png')
     plt.savefig(out_path, bbox_inches='tight', dpi=150)

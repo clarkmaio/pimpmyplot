@@ -21,6 +21,6 @@ venv/
 
 deployinstructions.md
 
-# Sphinx documentation
-docs/_build/
-docs/_static/*.png
+# MkDocs
+site/
+docs/assets/*.png

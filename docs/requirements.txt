@@ -1,4 +1,4 @@
-sphinx
-sphinx-rtd-theme
+mkdocs
+mkdocs-material
 matplotlib
 numpy
