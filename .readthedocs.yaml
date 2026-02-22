@@ -5,14 +5,17 @@
 version: 2
 
 # Set the OS, Python version, and other tools you might need
+# Build documentation in the "docs/" directory with MkDocs
+mkdocs:
+   configuration: mkdocs.yml
+
 build:
   os: ubuntu-24.04
   tools:
     python: "3.13"
-
-# Build documentation in the "docs/" directory with MkDocs
-mkdocs:
-   configuration: mkdocs.yml
+  jobs:
+    pre_build:
+      - python docs/generate_plots.py
 
 # Optionally, but recommended,
 # declare the Python requirements required to build your documentation
