@@ -14,7 +14,7 @@ setup(
     description='Small collection of functions to make better looking matplotlib plots',
     #long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/clarkmaio/pimpmyplot',
+    url='https://pimpmyplot.readthedocs.io/en/latest/',
     packages=find_packages(), 
     classifiers=[
         'Programming Language :: Python :: 3',
