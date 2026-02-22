@@ -11,6 +11,7 @@ You can find the source code and contribute to the project on its `GitHub reposi
    :caption: Contents:
 
    quickstart
+   features
    installation
 
 Indices and tables
