@@ -61,6 +61,22 @@ pmp.legend(loc='ext lower center', ncol=None, ax=None, shadow=True, edgecolor='k
 
 ![Legend Plot](assets/legend_plot.png)
 
+### Extended Locations (`ext`)
+
+The `ext` prefix allows placing the legend completely outside the plot, automatically adjusting the layout.
+
+**Bottom Center:** `loc='ext lower center'`
+
+![Legend Ext Lower Center Plot](assets/legend_ext_lower_center_plot.png)
+
+**Top Right:** `loc='ext upper right'`
+
+![Legend Ext Upper Right Plot](assets/legend_ext_upper_right_plot.png)
+
+**Side Position (Right):** `loc='ext side upper right'`
+
+![Legend Ext Side Upper Right Plot](assets/legend_ext_side_upper_right_plot.png)
+
 ## `pimpmyplot.annotation_legend`
 
 An extremely clean alternative to the traditional legend. Instead of using a dedicated box, it places the label of each line directly next to the end of the line on the plot.

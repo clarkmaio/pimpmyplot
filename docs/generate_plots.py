@@ -62,8 +62,35 @@ def generate_legend_plot():
     plt.plot(x, np.cos(x), label='Model B')
     plt.plot(x, np.sin(x)*np.cos(x), label='Model C')
     pmp.remove_axis('top', 'right')
-    pmp.legend(loc='ext side upper right', title='Models')
+    pmp.legend(loc='ext lower center', title='Models')
     _save('legend_plot')
+
+def generate_legend_ext_lower_center_plot():
+    x = np.linspace(0, 10, 100)
+    plt.figure(figsize=(5, 3))
+    plt.plot(x, np.sin(x), label='Series A')
+    plt.plot(x, np.cos(x), label='Series B')
+    pmp.remove_axis('top', 'right')
+    pmp.legend(loc='ext lower center')
+    _save('legend_ext_lower_center_plot')
+
+def generate_legend_ext_upper_right_plot():
+    x = np.linspace(0, 10, 100)
+    plt.figure(figsize=(5, 3))
+    plt.plot(x, np.sin(x), label='Series A')
+    plt.plot(x, np.cos(x), label='Series B')
+    pmp.remove_axis('top', 'right')
+    pmp.legend(loc='ext upper right')
+    _save('legend_ext_upper_right_plot')
+
+def generate_legend_ext_side_upper_right_plot():
+    x = np.linspace(0, 10, 100)
+    plt.figure(figsize=(5, 3))
+    plt.plot(x, np.sin(x), label='Series A')
+    plt.plot(x, np.cos(x), label='Series B')
+    pmp.remove_axis('top', 'right')
+    pmp.legend(loc='ext side upper right')
+    _save('legend_ext_side_upper_right_plot')
 
 def generate_annotation_legend_plot():
     x = np.linspace(0, 10, 100)
@@ -82,3 +109,6 @@ if __name__ == "__main__":
     generate_remove_ticks_plot()
     generate_legend_plot()
     generate_annotation_legend_plot()
+    generate_legend_ext_lower_center_plot()
+    generate_legend_ext_upper_right_plot()
+    generate_legend_ext_side_upper_right_plot()

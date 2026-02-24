@@ -6,16 +6,6 @@ import numpy as np
 from pimpmyplot.utils import setupax
 
 
-_DEFAULT_SCATTER_KWARGS = {
-    's': 2,
-    'color': '#cccccc',
-    'marker': 'o',
-    'alpha': .8,
-    'zorder': -100
-}
-
-
-
 def build_uniform_meshgrid(ax: matplotlib.axes.Axes, stepinch: float = .5) -> Tuple[np.array, np.array]:
     """Create equispaced meshgrid relative to axis scale"""
 
@@ -36,12 +26,22 @@ def build_uniform_meshgrid(ax: matplotlib.axes.Axes, stepinch: float = .5) -> Tu
 
 
 @setupax
-def bullet_grid(ax: matplotlib.axes.Axes = None, stepinch: float = .5, scatter_kwargs: Dict = {}):
+def bullet_grid(ax: matplotlib.axes.Axes = None, stepinch: float = .5,
+                s: int = 2, 
+                color: str = '#cccccc', 
+                marker: str = 'o', 
+                alpha: float = 0.8, 
+                zorder: int = -100, 
+                **kwargs):
     '''
     Build grid similar to dotted bullet journals
     '''
     X, Y = build_uniform_meshgrid(ax=ax, stepinch=stepinch)
-
-    scatter_kwargs.update(_DEFAULT_SCATTER_KWARGS)
-    ax.scatter(X, Y, **scatter_kwargs)
+    ax.scatter(X, Y,
+                s=s,
+                color=color,
+                marker=marker,
+                alpha=alpha,
+                zorder=zorder,
+                **kwargs)
     
