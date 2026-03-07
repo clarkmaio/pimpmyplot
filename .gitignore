@@ -24,3 +24,6 @@ deployinstructions.md
 # MkDocs
 site/
 docs/assets/*.png
+
+# Sphinx
+docs/_build/

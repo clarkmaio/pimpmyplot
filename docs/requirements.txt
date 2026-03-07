@@ -1,4 +1,4 @@
-mkdocs
-mkdocs-material
+sphinx
+pydata-sphinx-theme
 matplotlib
 numpy

@@ -69,7 +69,7 @@ def display_ticks(n: int = None, every: int = None, values: List = None, ax: mat
     ax : matplotlib.axes.Axes, optional
         The matplotlib axis object to modify. If None, uses the current axis (via @setupax).
     """
-
+    
     assert n | every | values, "One between n, every and values parameters must be not None"
     
     if n:
