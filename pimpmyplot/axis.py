@@ -10,18 +10,17 @@ from pimpmyplot.utils import setupax
 
 @setupax
 def remove_axis(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
-    '''
-    Make axis not visible.
+    """
+    Make specified axis spines not visible.
 
-    Params
-    -------
-    *sides : str
-        Options: 'top', 'bottom', 'left', 'right'. 
-        If nothing is passed all axis will be removed
-    
-    ax : plt.axis
-        Apply styling to this axis
-    '''
+    Parameters
+    ----------
+    *spines : str
+        The spines to remove. Options: 'top', 'bottom', 'left', 'right'.
+        If no spines are provided, all four spines will be removed.
+    ax : matplotlib.axes.Axes, optional
+        The matplotlib axis object to modify. If None, uses the current axis (via @setupax).
+    """
 
     spines = ['top', 'bottom', 'left', 'right'] if len(spines) == 0 else spines
     for s in spines:
@@ -30,6 +29,17 @@ def remove_axis(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
 
 @setupax
 def remove_ticks(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
+    """
+    Remove ticks and labels from specified axis sides.
+
+    Parameters
+    ----------
+    *spines : str
+        The sides from which to remove ticks and labels. Options: 'top', 'bottom', 'left', 'right'.
+        If no sides are provided, ticks/labels from all four sides will be removed.
+    ax : matplotlib.axes.Axes, optional
+        The matplotlib axis object to modify. If None, uses the current axis (via @setupax).
+    """
 
     if not ax:
         ax = plt.gca()
@@ -46,16 +56,18 @@ def remove_ticks(*spines: str, ax: matplotlib.axes.Axes = None) -> None:
 @setupax
 def display_ticks(n: int = None, every: int = None, values: List = None, ax: matplotlib.axes.Axes = None) -> None:
     """
-    Handle axis ticks display. Control how many ticks or which ones to show
+    Control how many ticks or which specific ones to display on the axis.
 
-    Params
-    -------
-    n: int
-        Absolute number of ticks to display
-    every: int
-        Disiplay subset of ticks among default ones adopting the frequency defined by this parameter
-    values: List
-        Use this values as ticks
+    Parameters
+    ----------
+    n : int, optional
+        The absolute number of ticks to display.
+    every : int, optional
+        Display a subset of ticks, keeping only every N-th tick.
+    values : List, optional
+        A list of specific values to use as ticks.
+    ax : matplotlib.axes.Axes, optional
+        The matplotlib axis object to modify. If None, uses the current axis (via @setupax).
     """
 
     assert n | every | values, "One between n, every and values parameters must be not None"

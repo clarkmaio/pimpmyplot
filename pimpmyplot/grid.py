@@ -6,8 +6,26 @@ import numpy as np
 from pimpmyplot.utils import setupax
 
 
-def build_uniform_meshgrid(ax: matplotlib.axes.Axes, stepinch: float = .5) -> Tuple[np.array, np.array]:
-    """Create equispaced meshgrid relative to axis scale"""
+def build_uniform_meshgrid(ax: matplotlib.axes.Axes, stepinch: float = .5) -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Create an equispaced meshgrid where the distance between points is uniform in physical units (inches).
+
+    This function calculates the necessary steps in data coordinates to ensure that the
+    grid points are separated by a fixed physical distance, regardless of the axis 
+    limits or aspect ratio.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes
+        The matplotlib axis object for which to generate the meshgrid.
+    stepinch : float, optional
+        The physical distance between grid points in inches, by default 0.5.
+
+    Returns
+    -------
+    Tuple[np.ndarray, np.ndarray]
+        A tuple containing (X, Y) coordinate matrices for the meshgrid.
+    """
 
     # Deduce axis step to make mesh uniform
     xmin, xmax = ax.get_xlim()
@@ -33,9 +51,31 @@ def bullet_grid(ax: matplotlib.axes.Axes = None, stepinch: float = .5,
                 alpha: float = 0.8, 
                 zorder: int = -100, 
                 **kwargs):
-    '''
-    Build grid similar to dotted bullet journals
-    '''
+    """
+    Render a grid of dots similar to a dotted bullet journal.
+
+    The grid is uniform in physical space (inches), ensuring that dots are equally spaced
+    visually even if the data scales differ significantly between X and Y axes.
+
+    Parameters
+    ----------
+    ax : matplotlib.axes.Axes, optional
+        The matplotlib axis to draw on. If None, uses the current axis (via @setupax).
+    stepinch : float, optional
+        The physical distance between dots in inches, by default 0.5.
+    s : int, optional
+        The size of the dots in points^2, by default 2.
+    color : str, optional
+        The color of the dots, by default '#cccccc' (light gray).
+    marker : str, optional
+        The marker style to use, by default 'o' (circle).
+    alpha : float, optional
+        The transparency of the dots, by default 0.8.
+    zorder : int, optional
+        The drawing order of the grid, by default -100 (drawn behind most elements).
+    **kwargs : dict
+        Additional keyword arguments passed to `ax.scatter`.
+    """
     X, Y = build_uniform_meshgrid(ax=ax, stepinch=stepinch)
     ax.scatter(X, Y,
                 s=s,
